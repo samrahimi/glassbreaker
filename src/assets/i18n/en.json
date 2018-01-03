@@ -48,7 +48,8 @@
   "SIGNUP_TITLE": "Sign up",
   "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
   "SIGNUP_BUTTON": "Sign up",
-
+  "SIGNUP_PRIVACY_TEXT": "We will never share your real name or email address publicly or with 3rd parties. But if you want more privacy, use the option below. Note that lost passwords can never be recovered with this method...",
+  "SIGNUP_BUTTON_ANONYMOUS": "Anonymous Signup",
   "LIST_MASTER_TITLE": "Items",
 
   "ITEM_CREATE_TITLE": "New Item",
@@ -56,7 +57,7 @@
 
   "ITEM_NAME_PLACEHOLDER": "Name",
   "ITEM_ABOUT_PLACEHOLDER": "About",
-
+  "ITEM_DETAILS_PLACEHOLDER": "Please provide additional details...",
   "DONE_BUTTON": "Done",
   "CANCEL_BUTTON": "Cancel",
   "DELETE_BUTTON": "Delete",
