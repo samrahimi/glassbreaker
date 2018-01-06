@@ -14,8 +14,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'hamster.html',
 })
 export class HamsterPage {
+  public filteredDataset: string="";
+  public selectedSpecies: string = "chinese"
 
+  public allSpecies: string[] = ["syrian", "chinese", "dwarf"]
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    var h:string = navParams.get("initialHamsterType")
+    if (h) {
+      console.log("h is "+h);
+      //this.selectedSpecies = h;
+    } 
+    this.filterDataset(this.selectedSpecies);
+  }
+  filterDataset(species) {
+    this.filteredDataset = "";
+      for (var i=0; i<20; i++)
+        this.filteredDataset += (species + " ")
+  }
+  loadSearchUI() {
+    this.navCtrl.push("SearchPage");
   }
 
   ionViewDidLoad() {

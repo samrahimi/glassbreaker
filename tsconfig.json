@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "noImplicitUseStrict": true,
     "allowSyntheticDefaultImports": true,
     "declaration": false,
     "emitDecoratorMetadata": true,

@@ -22,6 +22,11 @@ export class ListMasterPage {
   ionViewDidLoad() {
   }
 
+  //We should bind an observable on the Items provider when I have time to make one
+  refresh() {
+    this.currentItems = this.items.query();
+  }
+
   /**
    * Prompt the user to add a new item. This shows our ItemCreatePage in a
    * modal and then adds the new item to our data source if the user created one.
@@ -31,6 +36,7 @@ export class ListMasterPage {
     addModal.onDidDismiss(item => {
       if (item) {
         this.items.add(item);
+        this.refresh();
       }
     })
     addModal.present();
@@ -41,6 +47,7 @@ export class ListMasterPage {
    */
   deleteItem(item) {
     this.items.delete(item);
+    this.refresh()
   }
 
   /**
