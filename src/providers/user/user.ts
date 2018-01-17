@@ -1,41 +1,32 @@
 import 'rxjs/add/operator/toPromise';
 
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
-import { Api } from '../api/api';
+// import { Api } from '../api/api';
 
 /**
- * Most apps have the concept of a User. This is a simple provider
- * with stubs for login/signup/etc.
- *
- * This User provider makes calls to our API at the `login` and `signup` endpoints.
- *
- * By default, it expects `login` and `signup` to return a JSON object of the shape:
- *
- * ```json
- * {
- *   status: 'success',
- *   user: {
- *     // User fields your app needs, like "id", "name", "email", etc.
- *   }
- * }Ø
- * ```
- *
- * If the `status` field is not `success`, then an error is detected and returned.
+ * A simple login / signup service that talks to a Firestore database in the cloud.
  */
 @Injectable()
 export class User {
   _user: any;
 
-  constructor(public api: Api) { }
+  constructor() { }
 
   /**
    * Send a POST request to our login endpoint with the data
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
+    /*
+    let username= accountInfo.username;
+    let password = accountInfo.password; 
+    this._user =  this.afs.doc('users/'+username);
+    console.log(JSON.stringify(this._user)) */
+    //AngularFirestoreCollection
+    /*
     seq.subscribe((res: any) => {
       // If the API returned a successful response, mark the user as logged in
       if (res.status == 'success') {
@@ -47,6 +38,7 @@ export class User {
     });
 
     return seq;
+    */
   }
 
   /**
@@ -54,6 +46,7 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
+    /*
     let seq = this.api.post('signup', accountInfo).share();
 
     seq.subscribe((res: any) => {
@@ -66,6 +59,7 @@ export class User {
     });
 
     return seq;
+    */
   }
 
   /**

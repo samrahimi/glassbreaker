@@ -1,30 +1,29 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
-
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
-
 @IonicPage()
 @Component({
   selector: 'page-list-master',
   templateUrl: 'list-master.html'
 })
 export class ListMasterPage {
-  currentItems: Item[];
+  currentItems: Item[] = [];
 
   constructor(public navCtrl: NavController, public items: Items, public modalCtrl: ModalController) {
-    this.currentItems = this.items.query();
+
   }
 
   /**
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
+    this.items.refresh(false)
   }
 
   //We should bind an observable on the Items provider when I have time to make one
   refresh() {
-    this.currentItems = this.items.query();
+    //this.currentItems = this.items.query();
   }
 
   /**
@@ -36,7 +35,7 @@ export class ListMasterPage {
     addModal.onDidDismiss(item => {
       if (item) {
         this.items.add(item);
-        this.refresh();
+        //this.refresh();
       }
     })
     addModal.present();
@@ -47,7 +46,7 @@ export class ListMasterPage {
    */
   deleteItem(item) {
     this.items.delete(item);
-    this.refresh()
+    //this.refresh()
   }
 
   /**

@@ -22,3 +22,10 @@ export class Item {
 export interface Item {
   [prop: string]: any;
 }
+
+//Because the class def'n and interface for Item is 100% generic, we can create the rest of our 
+//model classes by extending it, no need to write any code. This way we can let the model evolve
+//naturally and add new fields, etc. on the fly... once the app is more fully baked we can come back
+//and formally define the model classes.
+//export class User extends Item {}
+//export interface User extends Item {}

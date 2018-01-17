@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar no-border-bottom>
-    <ion-title>Hamsters</ion-title>
+    <ion-title>Current Cases</ion-title>
       <ion-buttons left>
         <button ion-button icon-only menuToggle="sideMenu">
           <ion-icon name="menu"></ion-icon>
@@ -12,18 +12,25 @@
          </button>
       </ion-buttons>
   </ion-navbar>
-  <ion-segment [(ngModel)]="selectedSpecies">
-      <ion-segment-button *ngFor="let species of allSpecies" [value]="species" (click)="filterDataset(species)">
-        {{species | uppercase}}
+  <ion-segment [(ngModel)]="selectedFeedType">
+      <!-- Homepage feeds. A master feed is queried from the DB, and each feedType is a client side filter --> 
+      <ion-segment-button *ngFor="let feedType of allFeedTypes" [value]="feedType" (click)="filterDataset(feedType)">
+        {{feedType | uppercase}}
       </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 
 <ion-content padding>
-  <div>
-    <p>
-      {{ filteredDataset }}
-    </p>
-  </div>
+  <list-view [feedType]="feedType" [feedItems]="feedItems"></list-view>
+  <!--
+  <ul>
+        <li *ngFor="let item of feedItems">
+          {{ item.name }}
+        </li>
+    </ul>
+  -->
+  <!--
+  <button ion-button (click)="talkDirty()">Call Viewchild Method</button>
+  -->
 </ion-content>
