@@ -17,16 +17,16 @@
   "TUTORIAL_SKIP_BUTTON": "Skip",
   "TUTORIAL_CONTINUE_BUTTON": "Continue",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Fight For What's Right",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "<b>GlassBreaker</b> lets you anonymously expose harassment, corruption, and financial crimes in our workplaces and institutions... and bring their perpetrators to justice.",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+  "TUTORIAL_SLIDE2_TITLE": "Make and Settle Claims",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Anonymous smart contracts allow victims and perpetrators to negotiate monetary settlements - because complainants are anonymous, there is no fear of job loss or reprisal for bringing an action - unlike with conventional litigation. This is ADR... with razor-sharp teeth.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
+  "TUTORIAL_SLIDE3_TITLE": "Serious Security",
+  "TUTORIAL_SLIDE3_DESCRIPTION": "Pick the Privacy checkbox on signup to get bulletproof anonymity and mil-spec encryption of all data",
 
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+  "TUTORIAL_SLIDE4_TITLE": "Let's Change The World!",
 
   "WELCOME_INTRO": "The starting point for your next great Ionic app",
 

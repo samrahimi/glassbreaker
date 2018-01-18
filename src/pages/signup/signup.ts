@@ -15,13 +15,13 @@ import { MainPage } from '../pages';
 })
 export class SignupPage {
   // The account fields for the login form.
-  // If you're using the username field with or without email, make
-  // sure to add it to the type
-  account: { name: string, username:string, email: string, password: string } = {
+  // We really should define this as a model class, but who's got type for style.
+  account: { name: string, username:string, email: string, password: string, privacy:boolean} = {
     name: '',
     username: '',
     email: '',
-    password: ''
+    password: '',
+    privacy: false
   };
 
   // Our translated text strings
@@ -31,19 +31,45 @@ export class SignupPage {
     public afs: AngularFirestore,
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService,
+    public userService: User) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
     })
   }
+  
+  validateAccountSettings(proposedAccountSettings, onValidationOK, onInvalid) {
+    //make sure the username isn't already taken! because Firestore lets us 
+    //use custom ids, we're making the username the id, which lets us  
+    //check for dupes and also validate the name text in a single operation.   
+    this.afs.doc<any>("users/"+this.account.username).valueChanges().subscribe((u) => {
+      if (u == null) {
+        console.log("Passed name validation and unique check. Creating acct "+JSON.stringify(this.account))
+        onValidationOK();
+      }
+    }, (err) => {
+      onInvalid(err);
+    })
+  }
 
   doSignup() {
-    this.afs.doc<any>("users/"+this.account.username).set(this.account).then(success => {
-      this.navCtrl.setRoot(MainPage);
-    }, err => {
+    this.validateAccountSettings(this.account, () => {
+      this.afs.doc<any>("users/"+this.account.username).set(this.account).then(success => {
+        //User has logged in. Store details in app global state
+        this.userService.login(this.account)
+        this.navCtrl.setRoot(MainPage);
+      }, err => {
+        let toast = this.toastCtrl.create({
+          message: JSON.stringify(err),
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+      })  
+    }, function(err) {
       let toast = this.toastCtrl.create({
-        message: JSON.stringify(err),
+        message: "Invalid Username. Simple text only, please",
         duration: 3000,
         position: 'bottom'
       });

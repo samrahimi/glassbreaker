@@ -6,7 +6,10 @@ import { Observable } from 'rxjs/Observable';
 
 // import { Api } from '../api/api';
 
-/**
+/**  setLoggedIn(arg0: any): any {
+    throw new Error("Method not implemented.");
+  }
+
  * A simple login / signup service that talks to a Firestore database in the cloud.
  */
 @Injectable()
@@ -15,62 +18,26 @@ export class User {
 
   constructor() { }
 
-  /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
-   */
+  getCurrent() {
+    return this._user;
+  }
+  isLoggedIn() {
+   return this._user && this._user != null 
+  } 
   login(accountInfo: any) {
-    /*
-    let username= accountInfo.username;
-    let password = accountInfo.password; 
-    this._user =  this.afs.doc('users/'+username);
-    console.log(JSON.stringify(this._user)) */
-    //AngularFirestoreCollection
-    /*
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      } else {
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
-    */
+    this._user = accountInfo
   }
 
-  /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
-   */
   signup(accountInfo: any) {
-    /*
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
-    });
-
-    return seq;
-    */
+    console.log("Deprecated!")
   }
 
-  /**
-   * Log the user out, which forgets the session
-   */
   logout() {
     this._user = null;
   }
 
   /**
-   * Process a login/signup response to store user data
+   * Deprecated method, to delete on next refactor
    */
   _loggedIn(resp) {
     this._user = resp.user;
