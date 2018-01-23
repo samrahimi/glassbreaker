@@ -5,8 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages/pages';
-import { Settings, Db } from '../providers/providers';
-import { UuidProvider } from '../providers/uuid/uuid';
+import { Settings, Db, UuidProvider } from '../providers/providers';
 
 @Component({
   template: `<ion-menu persistent="true" id="sideMenu" [content]="content">
@@ -35,15 +34,8 @@ export class MyApp {
   pages: any[] = [
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
-    { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
-    { title: 'Login', component: 'LoginPage' },
-    { title: 'Signup', component: 'SignupPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
-    { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
-    { title: 'Hamster', component: 'HamsterPage'}
+    { title: 'Home', component: 'HomePage'}
   ]
 
   //dbInstance: any

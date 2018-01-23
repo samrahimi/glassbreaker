@@ -9,6 +9,7 @@ export class Api {
   defaultUrl: string = 'https://example.com/api/v1';
 
   constructor(public http: HttpClient) {
+    console.log("Warning! Using stub API provider")
   }
 
   setBaseUrl(url) {

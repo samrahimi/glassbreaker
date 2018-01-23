@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { ListViewComponent } from '../../components/list-view/list-view'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
@@ -14,10 +14,10 @@ import { UuidProvider } from '../../providers/uuid/uuid';
 
 @IonicPage()
 @Component({
-  selector: 'page-hamster',
-  templateUrl: 'hamster.html',
+  selector: 'page-home',
+  templateUrl: 'home.html',
 })
-export class HamsterPage {
+export class HomePage {
   public selectedFeedType: string = "trending"
   public allFeedTypes: string[] = ["trending", "latest", "shocking", "disputed", "celebs"]
   public allItems: any[] = [];
@@ -25,7 +25,11 @@ export class HamsterPage {
 
   @ViewChild(ListViewComponent) l: ListViewComponent;
 
-  constructor(public uuid: UuidProvider, public afs: AngularFirestore, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public uuid: UuidProvider, 
+    public afs: AngularFirestore, 
+    public navCtrl: NavController, 
+    public navParams: NavParams,  
+    public modalCtrl: ModalController) {
     //Allows us to pre-select the initial filter when navigating to this screen  
     var h:string = navParams.get("initialFeedType")
     if (h) {
@@ -33,15 +37,10 @@ export class HamsterPage {
       this.selectedFeedType = h;
     }
     
-    //How this works: afs.collection returns a handle to an AngularFirestoreCollection
-    //.valueChanges returns an Observable wrapping the array of items in the collection, 
-    //and that triggers whenever items are added / modified / deleted. It also triggers
-    //on initialization once the call has completed and the items are available.
-    //
-    //Each time the Observable fires, we update our local copy of the allItems collection (this.allItems)
-    //and then call filterDataset, which filters the local list based on the filter chosen by the user
-    //If we want to get fancy, we can make this.allItems an Observable itself, subscribe to it, and 
-    //re-filter the data in there. But why bother... it makes the code unreadable.
+    //The Angular firebase / firestore libs use Observables instead of callbacks or promises
+    //An observable is basically a promise crossed with an event listener - the resolution method 
+    //will fire each time the observed data changes, passing the updated dataset into the callback
+    //(or an error, but we're not trapping those right now) 
     afs.collection('items').valueChanges().subscribe((fullDataSet) => {
       this.allItems = fullDataSet;
       this.filterDataset(this.selectedFeedType)
@@ -68,9 +67,24 @@ export class HamsterPage {
   loadSearchUI() {
     this.navCtrl.push("SearchPage");
   }
+  /**
+   * Prompt the user to add a new item. This shows our ItemCreatePage in a
+   * modal and then adds the new item to our data source if the user created one.
+   */
+  addItem() {
+    let addModal = this.modalCtrl.create('ItemCreatePage');
+    addModal.onDidDismiss(item => {
+      if (item) {
+        console.log("Item written to Firestore. All subscriptions to afs.collection('items').valueChanges() will be updated")
+      } else {
+        console.log("Possible error - item is null or undefined")
+      }
+    })
+    addModal.present();
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HamsterPage');
+    console.log('ionViewDidLoad HomePage');
     //this.talkDirty();
   }
 }

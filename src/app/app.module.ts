@@ -10,13 +10,11 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StringiffyPipe } from '../pipes/stringiffy/stringiffy'
 import { PipesModule } from '../pipes/pipes.module'
-import { Items, Settings, User, Api, Db } from '../providers/providers';
+import { Items, Settings, User, Api, Db, UuidProvider } from '../providers/providers';
 import { MyApp } from './app.component';
-import { HamstersProvider } from '../providers/hamsters/hamsters';
 import { ComponentsModule } from '../components/components.module'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { UuidProvider } from '../providers/uuid/uuid';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBbCx_yoWaCi2TOxTvHvTrd17dG6ehIMCI",
@@ -84,7 +82,6 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    HamstersProvider,
     UuidProvider
   ]
 })
