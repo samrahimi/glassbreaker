@@ -16,12 +16,13 @@ import { MainPage } from '../pages';
 export class SignupPage {
   // The account fields for the login form.
   // We really should define this as a model class, but who's got type for style.
-  account: { name: string, username:string, email: string, password: string, privacy:boolean} = {
+  account: { name: string, username:string, email: string, password: string, privacy:boolean, security: boolean} = {
     name: '',
     username: '',
     email: '',
     password: '',
-    privacy: false
+    privacy: false,
+    security: false
   };
 
   // Our translated text strings
@@ -76,4 +77,17 @@ export class SignupPage {
       toast.present();
     })
   }
+
+  ionViewDidEnter() {
+    //Hacky workaround for autocomplete when in browser
+    /*
+    setTimeout(() => {
+      var els = window.document.getElementsByTagName("input")
+      els["email"].value="";
+      els["password"].value="";
+      console.log('Cleared potential autocomplete values once view loaded');  
+    }, 200); */
+  }
+
+
 }

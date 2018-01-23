@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ListViewComponent } from '../../components/list-view/list-view'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { UuidProvider } from '../../providers/uuid/uuid';
+
 /**
  * Generated class for the HamsterPage page.
  *
@@ -23,7 +25,7 @@ export class HamsterPage {
 
   @ViewChild(ListViewComponent) l: ListViewComponent;
 
-  constructor(public afs: AngularFirestore, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public uuid: UuidProvider, public afs: AngularFirestore, public navCtrl: NavController, public navParams: NavParams) {
     //Allows us to pre-select the initial filter when navigating to this screen  
     var h:string = navParams.get("initialFeedType")
     if (h) {
@@ -48,6 +50,7 @@ export class HamsterPage {
     //this.filterDataset(this.selectedFeedType);
   }
   filterDataset(feedType) {
+      console.log("UUID "+this.uuid.UUID());
       switch (feedType) {
         case "latest": 
           this.feedItems = this.allItems.filter(x => x.name.startsWith("a"));

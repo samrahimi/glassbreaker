@@ -22,24 +22,31 @@
 
       <ion-item>
         <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+        <ion-input type="text" [(ngModel)]="account.email" name="email"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="account.password" name="password" autocomplete="false"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Privacy</ion-label>
-        <ion-checkbox name="enhanced_privacy" [(ngModel)]="account.privacy"></ion-checkbox>
+        <ion-label class="full-width" fixed>Mil-Spec&trade; Security</ion-label>
+        <ion-checkbox name="enhanced_security" [(ngModel)]="account.security"></ion-checkbox>
       </ion-item>
+
+      <ion-item>
+          <ion-label class="full-width" fixed>Enhanced Anonymity</ion-label>
+          <ion-checkbox name="enhanced_privacy" [(ngModel)]="account.privacy"></ion-checkbox>
+      </ion-item>
+  
 
 
       <div padding>
-        <p>* Regular shows your username, Anonymous shows nothing, Mil-Spec is Wikileaks-grade security combined with user-controlled provability and the ability to execute Smart Contracts to settle monetary claims legally, while remaining anonymous. Mil-Spec costs money.</p>
+          <p>Mil-Spec Security ensures your account cannot be hacked. Forgotten passwords cannot be recovered</p>
+          <p>Enhanced Anonymity replaces your username with a new, randomly generated handle for each public post</p>
         <button ion-button color="primary" block>{{ 'SIGNUP_BUTTON' | translate }}</button>
-        <p>{{ 'SIGNUP_PRIVACY_TEXT' | translate }}</p>
+        <p>PRIVACY POLICY: We will never share your personal information for any reason, and we do not log IP addresses.</p>
       </div>
 
 

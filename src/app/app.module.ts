@@ -16,6 +16,7 @@ import { HamstersProvider } from '../providers/hamsters/hamsters';
 import { ComponentsModule } from '../components/components.module'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { UuidProvider } from '../providers/uuid/uuid';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBbCx_yoWaCi2TOxTvHvTrd17dG6ehIMCI",
@@ -83,7 +84,8 @@ export function provideSettings(storage: Storage) {
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    HamstersProvider
+    HamstersProvider,
+    UuidProvider
   ]
 })
 export class AppModule { }
