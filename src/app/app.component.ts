@@ -35,7 +35,8 @@ export class MyApp {
     { title: 'Tutorial', component: 'TutorialPage' },
     { title: 'Welcome', component: 'WelcomePage' },
     { title: 'Search', component: 'SearchPage' },
-    { title: 'Home', component: 'HomePage'}
+    { title: 'Home', component: 'HomePage'},
+    { title: 'Upload', component: 'ItemCreatePage'}
   ]
 
   //dbInstance: any

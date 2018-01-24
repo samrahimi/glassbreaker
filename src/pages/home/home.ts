@@ -30,7 +30,7 @@ export class HomePage {
     public afs: AngularFirestore, 
     public navCtrl: NavController, 
     public navParams: NavParams,  
-    public modalCtrl: ModalController,
+    private modalCtrl: ModalController,
     public bc: BlockchainProvider) {
     //Allows us to pre-select the initial filter when navigating to this screen  
     var h:string = navParams.get("initialFeedType")
@@ -73,7 +73,8 @@ export class HomePage {
    * modal and then adds the new item to our data source if the user created one.
    */
   addItem() {
-    let addModal = this.modalCtrl.create('ItemCreatePage');
+    //this.navCtrl.push("ItemCreatePage");
+    let addModal = this.modalCtrl.create("ItemCreatePage");
     addModal.onDidDismiss(item => {
       if (item) {
         item.id = this.afs.createId();
@@ -100,7 +101,7 @@ export class HomePage {
         console.log("Not writing to DB!");
       }
     })
-    addModal.present();
+    addModal.present(); 
   }
 
   ionViewDidLoad() {

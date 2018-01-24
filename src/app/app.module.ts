@@ -63,6 +63,7 @@ export function provideSettings(storage: Storage) {
     }),
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
+    ComponentsModule,
     PipesModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule

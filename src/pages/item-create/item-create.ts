@@ -32,7 +32,7 @@ export class ItemCreatePage {
   }
 
   ionViewDidLoad() {
-
+    console.log("ItemCreatePage view loaded")
   }
 
   getPicture() {
