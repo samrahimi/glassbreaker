@@ -9,7 +9,11 @@
       <ion-buttons right>
         <button ion-button icon-only (click)="addItem()">
             <ion-icon name="add"></ion-icon>
-          </button>  
+          </button>
+          <button ion-button icon-only (click)="loadSearchUI()">
+              <ion-icon name="search"></ion-icon>
+           </button>  
+    
       </ion-buttons>
   </ion-navbar>
   <ion-segment [(ngModel)]="selectedFeedType">

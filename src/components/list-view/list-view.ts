@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-/**
- * Generated class for the ListViewComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'list-view',
   templateUrl: 'list-view.html',

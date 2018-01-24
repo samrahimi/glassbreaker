@@ -3,17 +3,14 @@ import { CommonModule } from "@angular/common";
 import { IonicModule } from 'ionic-angular';
 
 import { ListViewComponent } from './list-view/list-view';
-import { CockViewComponent } from './cock-view/cock-view';
 @NgModule({
     declarations: 
-        [ListViewComponent,
-        CockViewComponent],
+        [ListViewComponent],
     imports: [
         CommonModule, 
-        IonicModule.forRoot(ListViewComponent)],
+        IonicModule],
 	exports: [
-        ListViewComponent,
-        CockViewComponent,
+        ListViewComponent
     ]
 })
 export class ComponentsModule {}
