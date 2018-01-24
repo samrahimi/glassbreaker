@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
 
 import { FirstRunPage } from '../pages/pages';
-import { Settings, Db, UuidProvider } from '../providers/providers';
+import { Settings, Db, UuidProvider, BlockchainProvider } from '../providers/providers';
 
 @Component({
   template: `<ion-menu persistent="true" id="sideMenu" [content]="content">
@@ -40,7 +40,15 @@ export class MyApp {
 
   //dbInstance: any
 
-  constructor(public uuid: UuidProvider, private db: Db, private translate: TranslateService, platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(public uuid: UuidProvider, 
+    private db: Db, 
+    private translate: TranslateService, 
+    platform: Platform, 
+    settings: Settings, 
+    private config: Config, 
+    private statusBar: StatusBar, 
+    private splashScreen: SplashScreen,
+    public bc: BlockchainProvider) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

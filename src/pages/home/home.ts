@@ -4,6 +4,7 @@ import { ListViewComponent } from '../../components/list-view/list-view'
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { UuidProvider } from '../../providers/uuid/uuid';
+import { BlockchainProvider } from '../../providers/blockchain/blockchain';
 
 /**
  * Generated class for the HamsterPage page.
@@ -29,7 +30,8 @@ export class HomePage {
     public afs: AngularFirestore, 
     public navCtrl: NavController, 
     public navParams: NavParams,  
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public bc: BlockchainProvider) {
     //Allows us to pre-select the initial filter when navigating to this screen  
     var h:string = navParams.get("initialFeedType")
     if (h) {
@@ -49,7 +51,6 @@ export class HomePage {
     //this.filterDataset(this.selectedFeedType);
   }
   filterDataset(feedType) {
-      console.log("UUID "+this.uuid.UUID());
       switch (feedType) {
         case "latest": 
           this.feedItems = this.allItems.filter(x => x.name.startsWith("a"));
@@ -75,9 +76,28 @@ export class HomePage {
     let addModal = this.modalCtrl.create('ItemCreatePage');
     addModal.onDidDismiss(item => {
       if (item) {
-        console.log("Item written to Firestore. All subscriptions to afs.collection('items').valueChanges() will be updated")
+        item.id = this.afs.createId();
+        item.created_at = Date.now();
+
+        var hashStamp = {
+          id: this.afs.createId(),
+          event_type: 'user_submitted_report',
+          event_time: item.created_at,
+          item_url: 'items/'+item.id,
+          item_md5sum: this.bc.getHashForObject(item),
+          audit_trail: {
+            previous:null,
+            next: null,
+            blockchainTxId: null
+          }
+        }
+        this.afs.collection("items").add(item);
+        this.afs.collection("hash_trail").add(hashStamp);
+
+        console.log("Wrote new item and hash info to Firestore")
       } else {
-        console.log("Possible error - item is null or undefined")
+        console.log("Possible error in form - item is null or undefined");
+        console.log("Not writing to DB!");
       }
     })
     addModal.present();

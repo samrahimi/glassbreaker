@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //import { Uuid } from 'uuid/v4';
-let _uuid = require('uuid/v4');
+import {v4} from 'uuid';
 /*
   A simple UUID generation service. Uses UUID v4 NPM library.
 */
@@ -13,6 +13,6 @@ export class UuidProvider {
   }
 
   UUID() {
-    return _uuid();
+    return v4();
   }
 }

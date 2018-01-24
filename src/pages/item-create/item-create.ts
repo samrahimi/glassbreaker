@@ -79,6 +79,9 @@ export class ItemCreatePage {
    */
   done() {
     if (!this.form.valid) { return; }
+    //IMPORTANT! The entire new record is stored in this.form.value
+    //The PARENT that pushed this modal will receive the data and must save it to the DB
+    //item-create will not do it for you! 
     this.viewCtrl.dismiss(this.form.value);
   }
 }

@@ -4,11 +4,13 @@ import { Settings } from './settings/settings';
 import { User } from './user/user';
 import { Db } from './db/db';
 import { UuidProvider } from './uuid/uuid';
+import {BlockchainProvider} from './blockchain/blockchain';
 export {
     Api,
     Items,
     Settings,
     User,
     Db,
-    UuidProvider
+    UuidProvider,
+    BlockchainProvider
 };
