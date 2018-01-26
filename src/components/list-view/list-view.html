@@ -2,37 +2,40 @@
 <div>
 <h2>{{ feedType }}</h2>
 
-<ion-card *ngFor="let item of cardItems">
+<ion-card *ngFor="let item of feedItems">
     <ion-item>
       <ion-avatar item-start>
-        <img [src]="item.category">
+        <img [src]="getIcon(item.category)">
       </ion-avatar>
-      <h2>{{ item.user.name }}</h2>
-      <p>{{ item.category }} - {{ item.date }}</p>
+      <h2>{{ item.title }}</h2>
+      <p><b>{{ item.category }}</b>
+        (By: <a (click)="viewDetails(item.id)">{{ item.user.username }}</a></p>
     </ion-item>
 
-    <img [src]="item.image">
+    <img [src]="item.thumbnail" />
 
     <ion-card-content>
-      <p>{{item.content}}</p>
+        <p>{{ item.summary }}&nbsp;&nbsp;&nbsp;
+          <a (click)="viewDetails(item.id)">Read More...</a>
+      </p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button ion-button color="primary" clear small icon-start>
             <ion-icon name='thumbs-up'></ion-icon>
-            12 Likes
+            {{item.likes || 0}}
           </button>
       </ion-col>
       <ion-col>
         <button ion-button color="primary" clear small icon-start>
             <ion-icon name='text'></ion-icon>
-            4 Comments
+            {{item.comments || 0}}
           </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          11h ago
+          {{ getTimeSince(item.created_at) }}
         </ion-note>
       </ion-col>
     </ion-row>

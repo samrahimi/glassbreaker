@@ -5,13 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs/Observable';
 import { UuidProvider } from '../../providers/uuid/uuid';
 import { BlockchainProvider } from '../../providers/blockchain/blockchain';
-
-/**
- * Generated class for the HamsterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { User } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
@@ -31,7 +25,8 @@ export class HomePage {
     public navCtrl: NavController, 
     public navParams: NavParams,  
     private modalCtrl: ModalController,
-    public bc: BlockchainProvider) {
+    public bc: BlockchainProvider,
+    public userService: User) {
     //Allows us to pre-select the initial filter when navigating to this screen  
     var h:string = navParams.get("initialFeedType")
     if (h) {
@@ -79,6 +74,7 @@ export class HomePage {
       if (item) {
         item.id = this.afs.createId();
         item.created_at = Date.now();
+        item.user = this.userService.getCurrent();
 
         var hashStamp = {
           id: this.afs.createId(),
@@ -86,6 +82,7 @@ export class HomePage {
           event_time: item.created_at,
           item_url: 'items/'+item.id,
           item_md5sum: this.bc.getHashForObject(item),
+          owner_id: item.user.username,
           audit_trail: {
             previous:null,
             next: null,

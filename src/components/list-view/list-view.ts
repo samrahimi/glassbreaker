@@ -46,4 +46,31 @@ export class ListViewComponent {
 
   }
 
+  viewDetails(item_id: any) {
+    console.log("Stub for viewDetails("+item_id+")")
+  }
+
+  getTimeSince(js_timestamp_value: number) {
+
+    let elapsed_time_buckets = [
+      {scale: 1000, max: 59, name: "seconds", abbr: "s"},
+      {scale: 60000, max: 59, name: "minutes", abbr: "m"},
+      {scale: 3600000, max: 23, name: "hours", abbr: "h"},
+      {scale: 86400000, max: 364, name: "hours", abbr: "h"},
+      {scale: 31536000000, max: 9999, name: "years", abbr: "y"},
+    ]
+    var diff = Date.now() - js_timestamp_value
+    for (var t of elapsed_time_buckets) {
+      var elapsed = Math.floor(diff/t.scale)
+      if (elapsed <= t.max) 
+        return elapsed+" "+t.name+" ago"
+    } 
+    console.log("getTimeSince failed silently!")
+  }
+
+  getIcon(category: string) {
+    //Gets the nice big category avatars, used when user does not have profile pic
+    return "/assets/img/ui/placeholders/first.jpg";
+  }
+
 }

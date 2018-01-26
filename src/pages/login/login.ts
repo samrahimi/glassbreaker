@@ -25,7 +25,7 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public userService: User,
     public toastCtrl: ToastController,
     public translateService: TranslateService, 
     public afs: AngularFirestore) {
@@ -43,6 +43,7 @@ export class LoginPage {
         this.showLoginErrorMessage("Wrong password, dickhead")        
       } else 
       { 
+        this.userService.login(u);
         this.navCtrl.setRoot(MainPage); 
         //TODO: set a persistent logged in flag, passing u to a provider / service
       }
