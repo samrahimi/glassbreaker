@@ -10,7 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { StringiffyPipe } from '../pipes/stringiffy/stringiffy'
 import { PipesModule } from '../pipes/pipes.module'
-import { Items, Settings, User, Api, Db, UuidProvider, BlockchainProvider } from '../providers/providers';
+import { Items, Settings, User, Api, Db, UuidProvider, BlockchainProvider, AreaCodeProvider } from '../providers/providers';
 import { MyApp } from './app.component';
 import { ComponentsModule } from '../components/components.module'
 import { AngularFireModule } from 'angularfire2';
@@ -84,7 +84,8 @@ export function provideSettings(storage: Storage) {
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UuidProvider,
-    BlockchainProvider
+    BlockchainProvider,
+    AreaCodeProvider
   ]
 })
 export class AppModule { }

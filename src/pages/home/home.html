@@ -25,6 +25,27 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
     <list-view [feedType]="feedType" [feedItems]="feedItems"></list-view>
 </ion-content>
+
+
+<ion-footer>
+  <ion-toolbar style="text-align:center">
+    <ion-buttons left>
+    <button ion-button clear icon-only>
+      <ion-icon name="home"></ion-icon>
+    </button>
+  </ion-buttons>
+  <ion-buttons center>
+    <button ion-button clear icon-only>
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-buttons>
+    <ion-buttons right>
+    <button ion-button clear icon-only>
+      <ion-icon name="heart"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

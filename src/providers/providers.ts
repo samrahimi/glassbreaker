@@ -5,6 +5,8 @@ import { User } from './user/user';
 import { Db } from './db/db';
 import { UuidProvider } from './uuid/uuid';
 import {BlockchainProvider} from './blockchain/blockchain';
+import {AreaCodeProvider} from './area-code/area-code';
+
 export {
     Api,
     Items,
@@ -12,5 +14,6 @@ export {
     User,
     Db,
     UuidProvider,
-    BlockchainProvider
+    BlockchainProvider,
+    AreaCodeProvider
 };
